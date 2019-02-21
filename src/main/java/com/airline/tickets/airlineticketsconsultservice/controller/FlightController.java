@@ -7,10 +7,7 @@ import com.airline.tickets.airlineticketsconsultservice.service.FlightService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,7 +20,7 @@ public class FlightController {
 
     @RequestMapping(method = RequestMethod.GET, produces = "application/json")
     @ApiOperation(value = "View a list of flight", response = List.class)
-    public ResponseEntity<List<Flight>> listFlight(FlightFilter filter) {
+    public ResponseEntity<List<Flight>> listFlight(@RequestBody FlightFilter filter) {
         return ResponseEntity.ok(service.findAllByFilter(filter));
     }
 
@@ -34,19 +31,19 @@ public class FlightController {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT, produces = "application/json", consumes = "application/json")
-    public ResponseEntity<Flight> updateFlight(@PathVariable Integer id, FlightDTO flight) {
+    public ResponseEntity<Flight> updateFlight(@PathVariable Integer id,@RequestBody FlightDTO flight) {
         return ResponseEntity.ok(service.updateFlight(id, flight));
     }
 
     @RequestMapping(method = RequestMethod.POST, consumes = "application/json")
     @ApiOperation(value = "Create a new flight", response = Flight.class)
-    public ResponseEntity<Flight> createFlight(FlightDTO dto) {
+    public ResponseEntity<Flight> createFlight(@RequestBody FlightDTO dto) {
         return ResponseEntity.ok(service.createFlight(dto));
     }
 
     @RequestMapping(value = "/batch", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
     @ApiOperation(value = "Create flights in batch")
-    public ResponseEntity<?> createFlights(List<FlightDTO> dtos) {
+    public ResponseEntity<?> createFlights(@RequestBody List<FlightDTO> dtos) {
         return ResponseEntity.ok(service.createFlights(dtos));
     }
 

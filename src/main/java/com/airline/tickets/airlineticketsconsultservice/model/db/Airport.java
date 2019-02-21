@@ -1,13 +1,13 @@
 package com.airline.tickets.airlineticketsconsultservice.model.db;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Builder
 @Entity(name = "tb_airport")
 public class Airport {
