@@ -18,17 +18,17 @@ public class AirportSpecification {
 
     private static Specification<Airport> likeInitialTerm(String term) {
         return (root, query, cb) ->
-                cb.equal(root.get("initial"), term);
+                cb.equal(cb.upper(root.get("initial")), term.toUpperCase());
     }
 
     private static Specification<Airport> likeNameTerm(String term) {
         return (root, query, cb) ->
-                cb.like(root.get("name"), term);
+                cb.like(cb.upper(root.get("name")), "%" + term.toUpperCase() + "%");
     }
 
     private static Specification<Airport> likeCityTerm(String term) {
-        return ((root, query, cb) ->
-                cb.like(root.get("city"), term));
+        return (root, query, cb) ->
+                cb.like(cb.upper(root.get("city")), "%" + term.toUpperCase() + "%");
     }
 
 
