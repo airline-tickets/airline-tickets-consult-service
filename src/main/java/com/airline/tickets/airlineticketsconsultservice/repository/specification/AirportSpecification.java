@@ -4,6 +4,7 @@ import com.airline.tickets.airlineticketsconsultservice.model.db.Airport;
 import com.airline.tickets.airlineticketsconsultservice.model.db.Flight;
 import com.airline.tickets.airlineticketsconsultservice.model.filter.FlightFilter;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.util.StringUtils;
 
 import java.util.Objects;
 
@@ -18,7 +19,7 @@ public class AirportSpecification {
 
     private static Specification<Airport> likeInitialTerm(String term) {
         return (root, query, cb) ->
-                cb.equal(cb.upper(root.get("initial")), term.toUpperCase());
+                cb.like(cb.upper(root.get("initial")), "%" + term.toUpperCase() + "%");
     }
 
     private static Specification<Airport> likeNameTerm(String term) {

@@ -1,28 +1,32 @@
 package com.airline.tickets.airlineticketsconsultservice.model.db;
 
+import com.airline.tickets.airlineticketsconsultservice.constant.TableConstants;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-@Getter
-@Setter
+@Data
 @Builder
-@Entity(name = "tb_flight")
+@Entity
+@NoArgsConstructor
+@AllArgsConstructor
+@Table(name = TableConstants.FLIGHT)
 public class Flight {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column
-    private String numberFligtht;
     @ManyToOne
+    @JoinColumn(name = "id", insertable = false, updatable = false)
     private Airport toWhere;
     @ManyToOne
+    @JoinColumn(name = "id", insertable = false, updatable = false)
     private Airport fromWhere;
     @Column
     private LocalDate depart;
@@ -31,9 +35,9 @@ public class Flight {
     @Column
     private Integer capacity;
     @Column
-    private LocalTime duration;
-    @Column
     private BigDecimal price;
+    @Version
+    private Integer version;
 
 }
 

@@ -1,28 +1,34 @@
 package com.airline.tickets.airlineticketsconsultservice.model.db;
 
+import com.airline.tickets.airlineticketsconsultservice.constant.TableConstants;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Entity(name = "tb_airport")
+@Entity
+@Table(name = TableConstants.AIRPORT)
 public class Airport {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @Column
+    @NotEmpty
     private String initial;
     @Column
+    @NotEmpty
     private String name;
     @Column
+    @NotEmpty
     private String city;
     @Column
+    @NotEmpty
     private String uf;
-    @Column
-    private String country;
+    @Version
+    private Integer version;
 }

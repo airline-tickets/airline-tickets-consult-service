@@ -1,4 +1,4 @@
-package com.airline.tickets.airlineticketsconsultservice.configuration;
+package com.airline.tickets.airlineticketsconsultservice.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

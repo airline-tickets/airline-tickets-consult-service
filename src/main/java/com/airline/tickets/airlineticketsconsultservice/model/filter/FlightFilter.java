@@ -1,12 +1,16 @@
 package com.airline.tickets.airlineticketsconsultservice.model.filter;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 
-@Getter
-@Setter
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class FlightFilter {
 
     private LocalDate depart;
