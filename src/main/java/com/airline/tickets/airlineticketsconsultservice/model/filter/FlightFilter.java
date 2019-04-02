@@ -13,8 +13,8 @@ import java.time.LocalDate;
 @AllArgsConstructor
 public class FlightFilter {
 
-    private LocalDate depart;
-    private LocalDate arrival;
-    private String from;
-    private String to;
+	private LocalDate depart;
+	private LocalDate arrival;
+	private String from;
+	private String to;
 }

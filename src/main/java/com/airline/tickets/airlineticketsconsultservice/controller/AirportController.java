@@ -12,21 +12,21 @@ import java.util.List;
 @RequestMapping("/airport")
 public class AirportController {
 
-    private AirportService airportService;
+	private final AirportService airportService;
 
-    public AirportController(AirportService airportService) {
-        this.airportService = airportService;
-    }
+	public AirportController(AirportService airportService) {
+		this.airportService = airportService;
+	}
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = "application/json")
-    @ApiOperation(value = "Get an airport", response = Airport.class)
-    public ResponseEntity<Airport> getAirport(@PathVariable Integer id) {
-        return ResponseEntity.ok(airportService.findAirportById(id));
-    }
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = "application/json")
+	@ApiOperation(value = "Get an airport", response = Airport.class)
+	public ResponseEntity<Airport> getAirport(@PathVariable Integer id) {
+		return ResponseEntity.ok(airportService.findAirportById(id));
+	}
 
-    @RequestMapping(method = RequestMethod.GET, produces = "application/json")
-    @ApiOperation(value = "Get an airport", response = Airport.class)
-    public ResponseEntity<List<Airport>> findAirportByTerm(@RequestParam(value = "term") String term) {
-        return ResponseEntity.ok(airportService.findAirportByTerm(term));
-    }
+	@RequestMapping(method = RequestMethod.GET, produces = "application/json")
+	@ApiOperation(value = "Get an airport", response = Airport.class)
+	public ResponseEntity<List<Airport>> findAirportByTerm(@RequestParam(value = "term") String term) {
+		return ResponseEntity.ok(airportService.findAirportByTerm(term));
+	}
 }

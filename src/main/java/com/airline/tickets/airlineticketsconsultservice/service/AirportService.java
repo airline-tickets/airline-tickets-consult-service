@@ -10,19 +10,19 @@ import java.util.List;
 @Service
 public class AirportService {
 
-    private AirportRepository airportRepository;
+	private final AirportRepository airportRepository;
 
-    public AirportService(AirportRepository airportRepository) {
-        this.airportRepository = airportRepository;
-    }
+	public AirportService(AirportRepository airportRepository) {
+		this.airportRepository = airportRepository;
+	}
 
-    public Airport findAirportById(Integer id) {
-        return airportRepository.findById(id).orElseThrow(
-                () -> new RuntimeException("Airport not found")
-        );
-    }
+	public Airport findAirportById(Integer id) {
+		return airportRepository.findById(id).orElseThrow(
+				() -> new RuntimeException("Airport not found")
+		);
+	}
 
-    public List<Airport> findAirportByTerm(String term) {
-        return airportRepository.findAll(AirportSpecification.getTerm(term));
-    }
+	public List<Airport> findAirportByTerm(String term) {
+		return airportRepository.findAll(AirportSpecification.getTerm(term));
+	}
 }

@@ -9,7 +9,6 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.time.LocalTime;
 
 @Data
 @Builder
@@ -19,25 +18,25 @@ import java.time.LocalTime;
 @Table(name = TableConstants.FLIGHT)
 public class Flight {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-    @ManyToOne
-    @JoinColumn(name = "id", insertable = false, updatable = false)
-    private Airport toWhere;
-    @ManyToOne
-    @JoinColumn(name = "id", insertable = false, updatable = false)
-    private Airport fromWhere;
-    @Column
-    private LocalDate depart;
-    @Column
-    private LocalDate arrival;
-    @Column
-    private Integer capacity;
-    @Column
-    private BigDecimal price;
-    @Version
-    private Integer version;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
+	@ManyToOne
+	@JoinColumn(name = "id", insertable = false, updatable = false)
+	private Airport toWhere;
+	@ManyToOne
+	@JoinColumn(name = "id", insertable = false, updatable = false)
+	private Airport fromWhere;
+	@Column
+	private LocalDate depart;
+	@Column
+	private LocalDate arrival;
+	@Column
+	private Integer capacity;
+	@Column
+	private BigDecimal price;
+	@Version
+	private Integer version;
 
 }
 

@@ -10,38 +10,37 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.logging.Filter;
 
 @RestController
 @RequestMapping("/flight")
 public class FlightController {
 
-    private FlightService flightService;
+	private final FlightService flightService;
 
-    public FlightController(FlightService flightService) {
-        this.flightService = flightService;
-    }
+	public FlightController(FlightService flightService) {
+		this.flightService = flightService;
+	}
 
-    @RequestMapping(method = RequestMethod.GET, produces = "application/json")
-    @ApiOperation(value = "View a list of flight", response = List.class)
-    public ResponseEntity<List<Flight>> listFlight(
-            @RequestParam(value = "depart", required = false)LocalDate depart,
-            @RequestParam(value = "arrival", required = false)LocalDate arrival,
-            @RequestParam(value = "from", required = false) String from,
-            @RequestParam(value = "to", required = false) String to){
-        FlightFilter filter = FlightFilter.builder().build();
-        return ResponseEntity.ok(flightService.findAllByFilter(filter));
-    }
+	@RequestMapping(method = RequestMethod.GET, produces = "application/json")
+	@ApiOperation(value = "View a list of flight", response = List.class)
+	public ResponseEntity<List<Flight>> listFlight(
+			@RequestParam(value = "depart", required = false) LocalDate depart,
+			@RequestParam(value = "arrival", required = false) LocalDate arrival,
+			@RequestParam(value = "from", required = false) String from,
+			@RequestParam(value = "to", required = false) String to) {
+		FlightFilter filter = FlightFilter.builder().build();
+		return ResponseEntity.ok(flightService.findAllByFilter(filter));
+	}
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = "application/json")
-    @ApiOperation(value = "View a flight", response = Flight.class)
-    public ResponseEntity<Flight> getFlight(@PathVariable Integer id) {
-        return ResponseEntity.ok(flightService.getFlight(id));
-    }
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = "application/json")
+	@ApiOperation(value = "View a flight", response = Flight.class)
+	public ResponseEntity<Flight> getFlight(@PathVariable Integer id) {
+		return ResponseEntity.ok(flightService.getFlight(id));
+	}
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.PUT, produces = "application/json", consumes = "application/json")
-    public ResponseEntity<Flight> updateFlight(@PathVariable Integer id,@RequestBody FlightDTO flight) {
-        return ResponseEntity.ok(flightService.updateFlight(id, flight));
-    }
+	@RequestMapping(value = "/{id}", method = RequestMethod.PUT, produces = "application/json", consumes = "application/json")
+	public ResponseEntity<Flight> updateFlight(@PathVariable Integer id, @RequestBody FlightDTO flight) {
+		return ResponseEntity.ok(flightService.updateFlight(id, flight));
+	}
 
 }

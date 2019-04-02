@@ -6,16 +6,14 @@ import com.airline.tickets.airlineticketsconsultservice.model.filter.FlightFilte
 import com.airline.tickets.airlineticketsconsultservice.repository.FlightRepository;
 import com.airline.tickets.airlineticketsconsultservice.repository.specification.FlightSpecification;
 import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class FlightService {
 
-	private FlightRepository flightRepository;
+	private final FlightRepository flightRepository;
 
 	public FlightService(FlightRepository flightRepository) {
 		this.flightRepository = flightRepository;
